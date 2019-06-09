@@ -8,7 +8,7 @@ Video stream that was used as input for detection - https://www.youtube.com/watc
 [![Watch the video](https://i.imgur.com/1TP6yRMh.gif)](https://imgur.com/GJDkbfu.gif)
 
 
-[![Watch the video](https://imgur.com/vrdP6Qa)](https://imgur.com/9hJaIPe)
+[![Watch the video](https://imgur.com/vrdP6Qa.gif)](https://imgur.com/9hJaIPe)
 
 
 
