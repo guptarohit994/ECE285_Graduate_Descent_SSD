@@ -3,7 +3,7 @@
 # Demo
 [![Video stream that was used as input for detection](https://imgur.com/1hcwxrk.gif) ](https://www.youtube.com/watch?v=u68EWmtKZw0) 
 
-[![Video stream that was used as input for detection](https://imgur.com/1hcwxrk.gif) ](https://imgur.com/GJDkbfu.gif) 
+[![Video stream that was used as input for detection](https://imgur.com/a/K4E5sO7.png) ](https://imgur.com/GJDkbfu.gif) 
 
 [![Watch the video](https://i.imgur.com/1TP6yRMh.gif)](https://imgur.com/GJDkbfu.gif)
 
@@ -18,7 +18,7 @@ A PyTorch implementation of the SSD Multibox Detector for image feature extracti
 - Training
 - Evaluation
 - Performance
-- Demo notebook
+- Demo notebook1hcwxrk.gif
 - References
 - Directory structure
 ### Installation
