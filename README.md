@@ -4,7 +4,9 @@
 
 ![]()
 
-[![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://imgur.com/Z31QH2I.gifv)
+[![Watch the video]()](https://imgur.com/Z31QH2I.gifv)
+
+[![Demo CountPages alpha](https://imgur.com/Z31QH2I.gifv)](https://www.youtube.com/watch?v=ek1j272iAmc)
 
 
 # Single Shot Detector 
