@@ -1,7 +1,9 @@
 # ECE 285 UCSD - Spring '19 - Final project - Team Graduate Descent
 
 # Demo
-![Alt Text](https://imgur.com/t49lVZA)
+
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=u68EWmtKZw0)
+
 
 # Single Shot Detector 
 A PyTorch implementation of the SSD Multibox Detector for image feature extraction, based on the 2016 [Arxiv](http://arxiv.org/abs/1512.02325) paper by Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang, and Alexander C. Berg.
