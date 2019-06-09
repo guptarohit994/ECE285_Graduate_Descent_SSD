@@ -7,6 +7,7 @@ from numpy import random
 
 
 def intersect(box_a, box_b):
+    '''Returns intersection of two given bounding boxes'''
     max_xy = np.minimum(box_a[:, 2:], box_b[2:])
     min_xy = np.maximum(box_a[:, :2], box_b[:2])
     inter = np.clip((max_xy - min_xy), a_min=0, a_max=np.inf)
@@ -14,16 +15,7 @@ def intersect(box_a, box_b):
 
 
 def jaccard_numpy(box_a, box_b):
-    """Compute the jaccard overlap of two sets of boxes.  The jaccard overlap
-    is simply the intersection over union of two boxes.
-    E.g.:
-        A ∩ B / A ∪ B = A ∩ B / (area(A) + area(B) - A ∩ B)
-    Args:
-        box_a: Multiple bounding boxes, Shape: [num_boxes,4]
-        box_b: Single bounding box, Shape: [4]
-    Return:
-        jaccard overlap: Shape: [box_a.shape[0], box_a.shape[1]]
-    """
+    '''Return IoU or Jaccard overlap of a list of multiple bounding boxes and a single bounding box.'''
     inter = intersect(box_a, box_b)
     area_a = ((box_a[:, 2]-box_a[:, 0]) *
               (box_a[:, 3]-box_a[:, 1]))  # [A,B]
@@ -34,16 +26,7 @@ def jaccard_numpy(box_a, box_b):
 
 
 class Compose(object):
-    """Composes several augmentations together.
-    Args:
-        transforms (List[Transform]): list of transforms to compose.
-    Example:
-        >>> augmentations.Compose([
-        >>>     transforms.CenterCrop(10),
-        >>>     transforms.ToTensor(),
-        >>> ])
-    """
-
+    '''Itemizes list of transforms to perform, ranging from crops to tranferring to tensors.'''
     def __init__(self, transforms):
         self.transforms = transforms
 
@@ -55,7 +38,6 @@ class Compose(object):
 
 class Lambda(object):
     """Applies a lambda as a transform."""
-
     def __init__(self, lambd):
         assert isinstance(lambd, types.LambdaType)
         self.lambd = lambd
@@ -65,11 +47,13 @@ class Lambda(object):
 
 
 class ConvertFromInts(object):
+    '''Convert object from integers'''
     def __call__(self, image, boxes=None, labels=None):
         return image.astype(np.float32), boxes, labels
 
 
 class SubtractMeans(object):
+    '''Itemizes subtraction of mean from passed object.'''
     def __init__(self, mean):
         self.mean = np.array(mean, dtype=np.float32)
 
@@ -91,6 +75,7 @@ class ToAbsoluteCoords(object):
 
 
 class ToPercentCoords(object):
+    '''Converts coordinates of bboxes to % values in terms of total width and height of image.'''
     def __call__(self, image, boxes=None, labels=None):
         height, width, channels = image.shape
         boxes[:, 0] /= width
@@ -112,6 +97,7 @@ class Resize(object):
 
 
 class RandomSaturation(object):
+    '''Randomly saturates an image.'''
     def __init__(self, lower=0.5, upper=1.5):
         self.lower = lower
         self.upper = upper
@@ -126,6 +112,7 @@ class RandomSaturation(object):
 
 
 class RandomHue(object):
+    '''Adds a random hue to an image.'''
     def __init__(self, delta=18.0):
         assert delta >= 0.0 and delta <= 360.0
         self.delta = delta
@@ -139,6 +126,7 @@ class RandomHue(object):
 
 
 class RandomLightingNoise(object):
+    '''Adds random lighting noise to an image.'''
     def __init__(self):
         self.perms = ((0, 1, 2), (0, 2, 1),
                       (1, 0, 2), (1, 2, 0),
@@ -153,6 +141,7 @@ class RandomLightingNoise(object):
 
 
 class ConvertColor(object):
+    '''Convert colorspace from BGR to HSV or vice versa.'''
     def __init__(self, current='BGR', transform='HSV'):
         self.transform = transform
         self.current = current
@@ -168,6 +157,7 @@ class ConvertColor(object):
 
 
 class RandomContrast(object):
+    '''Adds random contrast to an image.'''
     def __init__(self, lower=0.5, upper=1.5):
         self.lower = lower
         self.upper = upper
@@ -183,6 +173,7 @@ class RandomContrast(object):
 
 
 class RandomBrightness(object):
+    '''Adds random brightness to an image.'''
     def __init__(self, delta=32):
         assert delta >= 0.0
         assert delta <= 255.0
@@ -196,28 +187,20 @@ class RandomBrightness(object):
 
 
 class ToCV2Image(object):
+    '''Shift image to CPU'''
     def __call__(self, tensor, boxes=None, labels=None):
         return tensor.cpu().numpy().astype(np.float32).transpose((1, 2, 0)), boxes, labels
 
 
 class ToTensor(object):
+    '''Shift image to CUDA domain.'''
     def __call__(self, cvimage, boxes=None, labels=None):
         return torch.from_numpy(cvimage.astype(np.float32)).permute(2, 0, 1), boxes, labels
 
 
 class RandomSampleCrop(object):
-    """Crop
-    Arguments:
-        img (Image): the image being input during training
-        boxes (Tensor): the original bounding boxes in pt form
-        labels (Tensor): the class labels for each bbox
-        mode (float tuple): the min and max jaccard overlaps
-    Return:
-        (img, boxes, classes)
-            img (Image): the cropped image
-            boxes (Tensor): the adjusted bounding boxes in pt form
-            labels (Tensor): the class labels for each bbox
-    """
+    '''Randomly crop an image - return cropped image, the adjusted bounding boxes and the corresponding class labels, given the
+    original image, bboxes, labels, and the min and max jaccard overlaps (as a tuple).'''
     def __init__(self):
         self.sample_options = (
             # using entire original input image
@@ -310,6 +293,7 @@ class RandomSampleCrop(object):
 
 
 class Expand(object):
+    '''Itemize expansion operation of images through zero padding and mean-filling, while simultaneously updating bounding boxes.'''
     def __init__(self, mean):
         self.mean = mean
 
@@ -338,6 +322,7 @@ class Expand(object):
 
 
 class RandomMirror(object):
+    '''Randomly mirror an image.'''
     def __call__(self, image, boxes, classes):
         _, width, _ = image.shape
         if random.randint(2):
@@ -354,17 +339,12 @@ class SwapChannels(object):
         swaps (int triple): final order of channels
             eg: (2, 1, 0)
     """
-
+    '''Itemize the swapping of channels of an image as specified in a tuple.'''
     def __init__(self, swaps):
         self.swaps = swaps
 
     def __call__(self, image):
-        """
-        Args:
-            image (Tensor): image tensor to be transformed
-        Return:
-            a tensor with channels swapped according to swap
-        """
+        '''Return swapped-channels tensor given original tensor.'''
         # if torch.is_tensor(image):
         #     image = image.data.cpu().numpy()
         # else:
@@ -374,6 +354,7 @@ class SwapChannels(object):
 
 
 class PhotometricDistort(object):
+    '''Itemize random distortion operation of images - after applying random brightness and lighting noise.'''
     def __init__(self):
         self.pd = [
             RandomContrast(),
@@ -398,6 +379,7 @@ class PhotometricDistort(object):
 
 
 class SSDAugmentation(object):
+    '''Itemize SSD augmentation - call all of the functions in this file on every image iteratively.'''
     def __init__(self, size=300, mean=(104, 117, 123)):
         self.mean = mean
         self.size = size
