@@ -3,7 +3,7 @@
 # Demo
 Video stream that was used as input for detection - https://www.youtube.com/watch?v=u68EWmtKZw0 
 
-<img src="<a href="https://imgur.com/lvsrUDQ"><img src="https://i.imgur.com/lvsrUDQh.gif" title="source: imgur.com" /></a>
+<a href="https://imgur.com/lvsrUDQ"><img src="https://i.imgur.com/lvsrUDQh.gif" title="source: imgur.com"  width="40" height="40"/></a>
 
 # Single Shot Detector 
 A PyTorch implementation of the SSD Multibox Detector for image feature extraction, based on the 2016 [Arxiv](http://arxiv.org/abs/1512.02325) paper by Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang, and Alexander C. Berg.
