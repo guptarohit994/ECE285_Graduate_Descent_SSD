@@ -193,45 +193,12 @@ def add_extras(i, batch_norm=False):
        else:
            layers += extra_conv_layer(in_channels, 256, len(layers)%2, 0)
        in_channels=256
-    '''
-    layers += extra_conv_layer(in_channels, 128, 0, 0)
-    in_channels=128
-    layers += extra_conv_layer(in_channels, 256, len(layers)%2, 1)
-    in_channels=256
-    layers += extra_conv_layer(in_channels, 128, 0, 0)
-    in_channels=128
-    layers += extra_conv_layer(in_channels, 256, len(layers)%2, 0)
-    in_channels=256
-    layers += extra_conv_layer(in_channels, 128, 0, 0)
-    in_channels=128
-    layers += extra_conv_layer(in_channels, 256, len(layers)%2, 0)
-    in_channels=256
-    print(layers)
-    layers = nn.ModuleList()
-
-    layers = nn.ModuleList([nn.Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1)), 
-              nn.Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1)), 
-              nn.Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1)),
-              nn.Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1)),
-              nn.Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1)),
-              nn.Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1)),
-              nn.Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1)),
-              nn.Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1))])
-    print(layers)
-    '''
     return layers
 
 
-def multibox(vgg, extra_layers, cfg, num_classes):
+def multibox(vgg, extra_layers, num_classes):
     loc_layers = nn.ModuleList()
     conf_layers = nn.ModuleList()
-    '''
-    for k, v in enumerate(extra_layers[1::2], 2):
-        loc_layers += [nn.Conv2d(v.out_channels, cfg[k]
-                                * 4, kernel_size=3, padding=1)]
-        conf_layers += [nn.Conv2d(v.out_channels, cfg[k]
-                                * num_classes, kernel_size=3, padding=1)]
-    '''    
     loc_layers += nn.ModuleList([nn.Conv2d(vgg[21].out_channels,
                                  4 * 4, kernel_size=3, padding=1)])
     conf_layers += nn.ModuleList([nn.Conv2d(vgg[21].out_channels,
@@ -255,28 +222,12 @@ def multibox(vgg, extra_layers, cfg, num_classes):
         loc_layers += add_loc_stacked_layer_list
         conf_layers += add_conf_stacked_layer_list
 
-    '''
-    for k, v in enumerate(extra_layers[1::2], 2):
-        loc_layers += [nn.Conv2d(v.out_channels, cfg[k]
-                                 * 4, kernel_size=3, padding=1)]
-        conf_layers += [nn.Conv2d(v.out_channels, cfg[k]
-                                  * num_classes, kernel_size=3, padding=1)]
-    print("Extra Layers",extra_layers[1::2])
-    '''
     return vgg, extra_layers, (loc_layers, conf_layers)
-
-
-extras = {
-    '300': [256, 'S', 512, 128, 'S', 256, 128, 256, 128, 256],
-}
-mbox = {
-    '300': [4, 6, 6, 6, 4, 4],  # number of boxes per feature map location
-}
 
 
 def build_ssd(phase, size=300, num_classes=21):
     base_, extras_, head_ = multibox(vgg(3),
                                      add_extras(1024),
-                                     mbox[str(size)], num_classes)
+                                     num_classes)
     return SSD(phase, size, base_, extras_, head_, num_classes)
 
