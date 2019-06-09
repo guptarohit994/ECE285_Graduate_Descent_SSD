@@ -1,12 +1,15 @@
 # ECE 285 UCSD - Spring '19 - Final project - Team Graduate Descent
 
-# Demo
+# Input New York City Walking Tour Videostream
 [![Video stream that was used as input for detection](https://imgur.com/1hcwxrk.gif) ](https://www.youtube.com/watch?v=u68EWmtKZw0) 
 
+# Clean Videostream object detected
 [![Video stream that was used as input for detection](https://imgur.com/5BLCHJh.gif) ](https://imgur.com/GJDkbfu.gif) 
 
+# Noisy Videostream object detected
 [![Watch the video](https://i.imgur.com/1TP6yRMh.gif)](https://imgur.com/1TP6yRM)
 
+# Denoised Videostream object detected
 [![Watch the video](https://imgur.com/vrdP6Qa.gif)](https://imgur.com/9hJaIPe.gif)
 
 
