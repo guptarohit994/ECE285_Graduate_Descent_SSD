@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.autograd import Variable
 from data import coco as cfg
 from ..box_utils import match, log_sum_exp
 
@@ -76,8 +75,8 @@ class MultiBoxLoss(nn.Module):
             loc_t = loc_t.cuda()
             conf_t = conf_t.cuda()
         # wrap targets
-        loc_t = Variable(loc_t, requires_grad=False)
-        conf_t = Variable(conf_t, requires_grad=False)
+        loc_t.requires_grad=False
+        conf_t.requires_grad=False
 
         pos = conf_t > 0
         num_pos = pos.sum(dim=1, keepdim=True)
@@ -113,9 +112,7 @@ class MultiBoxLoss(nn.Module):
         # Sum of losses: L(x,c,l,g) = (Lconf(x, c) + αLloc(x,l,g)) / N
 
         N = num_pos.data.sum().double()
-        loss_l = loss_l.double()
-        loss_c = loss_c.double()
-        loss_l /= N
-        loss_c /= N
+        loss_l = loss_l.double()/N
+        loss_c = loss_c.double()/N
         return loss_l, loss_c
 

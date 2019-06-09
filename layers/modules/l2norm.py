@@ -5,6 +5,9 @@ from torch.autograd import Variable
 import torch.nn.init as init
 
 class L2Norm(nn.Module):
+    """
+    L2 norm is calculated, the number is divided by its L2 norm and then, the output is returned in this function
+    """
     def __init__(self, n_channels, scale):
         super(L2Norm,self).__init__()
         self.n_channels = torch.Tensor(n_channels)
