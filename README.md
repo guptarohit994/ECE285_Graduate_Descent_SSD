@@ -5,9 +5,6 @@
 
 [![Watch the video](https://imgur.com/xbZt64k.gif)](https://imgur.com/Z31QH2I.gifv)
 
-[![Demo CountPages alpha](https://imgur.com/Z31QH2I.gifv)](https://www.youtube.com/watch?v=ek1j272iAmc)
-
-
 # Single Shot Detector 
 A PyTorch implementation of the SSD Multibox Detector for image feature extraction, based on the 2016 [Arxiv](http://arxiv.org/abs/1512.02325) paper by Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang, and Alexander C. Berg.
 ## Table of contents
