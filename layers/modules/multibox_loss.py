@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from data import coco as cfg
+from data import voc as cfg
 from ..box_utils import match, log_sum_exp
 
 if torch.cuda.is_available(): torch.set_default_tensor_type('torch.cuda.FloatTensor')
