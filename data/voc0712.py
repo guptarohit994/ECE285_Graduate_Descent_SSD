@@ -60,20 +60,13 @@ class VOCAnnotationTransform(object):
 
 
 class VOCDetection(data.Dataset):
-    """VOC Detection Dataset Object
-    input is image, target is annotation
-    Arguments:
-        root (string): filepath to VOCdevkit folder.
-        image_set (string): imageset to use (eg. 'train', 'val', 'test')
-        transform (callable, optional): transformation to perform on the
-            input image
-        target_transform (callable, optional): transformation to perform on the
-            target `annotation`
-            (eg: take in caption string, return tensor of word indices)
-        dataset_name (string, optional): which dataset to load
-            (default: 'VOC2007')
-    """
-
+    '''VOC dataset detection object.
+    Updates annotation based on input image, which has following attributes:
+        - root directory
+        - which set (train/va/test)
+        - transformation to perform on image
+        - transformation to perform on target
+        - dataset to load (VOC2012, COCO etc)'''
     def __init__(self, root,
                  image_sets=[('2007', 'trainval'), ('2012', 'trainval')],
                  transform=None, target_transform=VOCAnnotationTransform(),
@@ -104,6 +97,7 @@ class VOCDetection(data.Dataset):
         return len(self.ids)
 
     def pull_item(self, index):
+        '''Return torch from numpy of image after transform, given index of image'''
         img_id = self.ids[index]
 
         target = ET.parse(self._annopath % img_id).getroot()
@@ -132,18 +126,12 @@ class VOCDetection(data.Dataset):
         Return:
             PIL img
         '''
+        '''Returns image in PIL form given index of image. __getitem__ cannot be used since transformations may change organization of data.'''
         img_id = self.ids[index]
         return cv2.imread(self._imgpath % img_id, cv2.IMREAD_COLOR)
 
     def pull_noisy_image(self, index):
-        '''Returns the original image object at index in PIL form
-        Note: not using self.__getitem__(), as any transformations passed in
-        could mess up this functionality.
-        Argument:
-            index (int): index of img to show
-        Return:
-            PIL img
-        '''
+        '''Returns noisy image in PIL form given index of image. __getitem__ cannot be used since transformations may change organization of data.'''        
         img_id = self.ids[index]
         img_path = self._imgpath % img_id
         
