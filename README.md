@@ -3,7 +3,7 @@
 # Demo
 [![Video stream that was used as input for detection](https://imgur.com/1hcwxrk.gif) ](https://www.youtube.com/watch?v=u68EWmtKZw0) 
 
-<iframe class="imgur-embed" width="100%" height="480" frameborder="0" src="https://i.imgur.com/1TP6yRM.gifv#embed"></iframe>
+<iframe class="imgur-embed" width="100%" height="480" frameborder="0" src="https://i.imgur.com/1TP6yRM.gif"></iframe>
 
 [![Noisy Video stream that was used as input for detection](https://i.imgur.com/1TP6yRM.gifv#embed) ](https://www.youtube.com/watch?v=u68EWmtKZw0) 
 
