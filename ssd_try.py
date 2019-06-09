@@ -29,10 +29,8 @@ class SSD(nn.Module):
         super(SSD, self).__init__()
         self.phase = phase
         self.num_classes = num_classes
-        #self.cfg = (coco, voc)[num_classes == 21]
         self.cfg = voc
         self.priorbox = PriorBox(self.cfg)
-        #self.priors = Variable(self.priorbox.forward(), volatile=True)
         self.priors = self.priorbox.forward()
         self.size = size
 
@@ -72,18 +70,14 @@ class SSD(nn.Module):
         loc = list()
         conf = list()
 
-        # apply vgg up to conv4_3 relu
-        for k in range(23):
-            x = self.vgg[k](x)
-
-        s = self.L2Norm(x)
-        sources.append(s)
-
-        # apply vgg up to fc7
-        for k in range(23, len(self.vgg)):
-            x = self.vgg[k](x)
-        sources.append(x)
-
+        for k in len(self.vgg):
+            x= self.vgg[k](x)
+            if k==22:
+                s = self.L2Norm(x)
+                sources.append(s)
+          
+        source.append(x)
+        
         # apply extra layers and cache source layer outputs
         for k, v in enumerate(self.extras):
             x = F.relu(v(x), inplace=True)
@@ -168,10 +162,9 @@ def add_extras(cfg, i, batch_norm=False):
 def multibox(vgg, extra_layers, cfg, num_classes):
     loc_layers = []
     conf_layers = []
-    vgg_source = [21, -2]
-    """
-    network = [vgg_source, extra_layers]
-    for net in networks:
+    vgg_source = [num_classes, -2]
+    network = [vgg_source, extra_layers[1::2]]]
+    for net in network:
         for k, v in enumerate(net):
             try:
                   loc_layers += [nn.Conv2d(vgg[v].out_channels,
@@ -185,45 +178,29 @@ def multibox(vgg, extra_layers, cfg, num_classes):
             except:
                 conf_layers += [nn.Conv2d(v.out_channels, cfg[k]
                                   * num_classes, kernel_size=3, padding=1)]
-    """            
-    for k, v in enumerate(vgg_source):
-        loc_layers += [nn.Conv2d(vgg[v].out_channels,
-                                 cfg[k] * 4, kernel_size=3, padding=1)]
-        conf_layers += [nn.Conv2d(vgg[v].out_channels,
-                        cfg[k] * num_classes, kernel_size=3, padding=1)]
-    for k, v in enumerate(extra_layers[1::2], 2):
-        loc_layers += [nn.Conv2d(v.out_channels, cfg[k]
-                                 * 4, kernel_size=3, padding=1)]
-        conf_layers += [nn.Conv2d(v.out_channels, cfg[k]
-                                  * num_classes, kernel_size=3, padding=1)]
+    
     return vgg, extra_layers, (loc_layers, conf_layers)
 
 
 base = {
     '300': [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 'C', 512, 512, 512, 'M',
             512, 512, 512],
-    '512': [],
 }
 extras = {
     '300': [256, 'S', 512, 128, 'S', 256, 128, 256, 128, 256],
-    '512': [],
 }
 mbox = {
     '300': [4, 6, 6, 6, 4, 4],  # number of boxes per feature map location
-    '512': [],
 }
 
 
 def build_ssd(phase, size=300, num_classes=21):
-    if phase != "test" and phase != "train":
-        print("ERROR: Phase: " + phase + " not recognized")
-        return
-    if size != 300:
-        print("ERROR: You specified size " + repr(size) + ". However, " +
-              "currently only SSD300 (size=300) is supported!")
-        return
     base_, extras_, head_ = multibox(vgg(base[str(size)], 3),
                                      add_extras(extras[str(size)], 1024),
                                      mbox[str(size)], num_classes)
+    
     return SSD(phase, size, base_, extras_, head_, num_classes)
 
+
+if __name__ == "__main__":
+    net = build_ssd('test', 300, 21)
