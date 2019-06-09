@@ -6,7 +6,7 @@
 # Single Shot Detector 
 A PyTorch implementation of the SSD Multibox Detector for image feature extraction, based on the 2016 [Arxiv](http://arxiv.org/abs/1512.02325) paper by Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang, and Alexander C. Berg.
 ## Table of contents
-- Packages required
+- Installation
 - Datasets
 - Training
 - Evaluation
@@ -14,13 +14,8 @@ A PyTorch implementation of the SSD Multibox Detector for image feature extracti
 - Demo notebook
 - References
 - Directory structure
-### Packages required
-- pip
-- numpy
-- torchvision
-- math
-- itertools
-- cv2
+### Installation
+```pip install -requirements.txt```
 ### Datasets
 [2012 version](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/) of Pascal VOC dataset - well known dataset for object detection/classification/segmentation. Contains 100k images for training and validation containing bounding boxes with 20 categories of objects.
 ### Training
