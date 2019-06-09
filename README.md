@@ -2,7 +2,8 @@
 
 # Demo
 
-![Alt Text](https://imgur.com/Z31QH2I)
+![](https://imgur.com/Z31QH2I)
+
 
 
 # Single Shot Detector 
