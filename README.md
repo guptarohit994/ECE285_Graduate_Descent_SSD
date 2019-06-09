@@ -2,7 +2,6 @@
 
 # Demo
 
-![]()
 
 [![Watch the video]()](https://imgur.com/Z31QH2I.gifv)
 
