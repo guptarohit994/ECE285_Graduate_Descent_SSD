@@ -163,21 +163,17 @@ def multibox(vgg, extra_layers, cfg, num_classes):
     loc_layers = []
     conf_layers = []
     vgg_source = [num_classes, -2]
-    network = [vgg_source, extra_layers[1::2]]
-    for net in network:
-        for k, v in enumerate(net):
-            try:
-                  loc_layers += [nn.Conv2d(vgg[v].out_channels,
+    for k, v in enumerate(vgg_source):
+        loc_layers += [nn.Conv2d(vgg[v].out_channels,
                                  cfg[k] * 4, kernel_size=3, padding=1)]
-            except:
-                   loc_layers += [nn.Conv2d(v.out_channels, cfg[k]
-                                 * 4, kernel_size=3, padding=1)]
-            try:
-                 conf_layers += [nn.Conv2d(vgg[v].out_channels,
+        conf_layers += [nn.Conv2d(vgg[v].out_channels,
                         cfg[k] * num_classes, kernel_size=3, padding=1)]
-            except:
-                conf_layers += [nn.Conv2d(v.out_channels, cfg[k]
+    for k, v in enumerate(extra_layers[1::2], 2):
+        loc_layers += [nn.Conv2d(v.out_channels, cfg[k]
+                                 * 4, kernel_size=3, padding=1)]
+        conf_layers += [nn.Conv2d(v.out_channels, cfg[k]
                                   * num_classes, kernel_size=3, padding=1)]
+        
     
     return vgg, extra_layers, (loc_layers, conf_layers)
 
