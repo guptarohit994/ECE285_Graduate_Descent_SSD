@@ -3,7 +3,7 @@ basenet = 'weights/vgg16_reducedfc.pth'
 data_set = 'VOC'
 dataset_root = voc_root = '//datasets/ee285f-public/PascalVOC2012/'
 save_folder = 'trained_weights/'
-trained_model = 'ssd_pretrained.pth'
+#trained_model = 'ssd_pretrained.pth'
 eval_save_folder = 'eval/'
 devkit_path = 'devkit_path/'
 output_dir = "out/"
@@ -26,3 +26,4 @@ cleanup = True
 YEAR = '2012'
 dataset_mean = (104, 117, 123)
 set_type = 'train'
+trained_model = 'weights/ssd300_mAP_77.43_v2.pth'
