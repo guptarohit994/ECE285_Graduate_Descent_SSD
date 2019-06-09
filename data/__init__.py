@@ -7,16 +7,6 @@ import cv2
 import numpy as np
 
 def detection_collate(batch):
-    """Custom collate fn for dealing with batches of images that have a different
-    number of associated object annotations (bounding boxes).
-    Arguments:
-        batch: (tuple) A tuple of tensor images and lists of annotations
-    Return:
-        A tuple containing:
-            1) (tensor) batch of images stacked on their 0 dim
-            2) (list of tensors) annotations for a given image are stacked on
-                                 0 dim
-    """
     '''Return tuple containing tensor of batch of images stacked in 0 dimension, list of tensors stacked in 0 dimension containing annotations for given image
     Given tuple of tenser images and lists of annotations.'''
     targets = []
@@ -36,7 +26,7 @@ def base_transform(image, size, mean):
 
 
 class BaseTransform:
-    '''Class to call base_transform function on ever image iteratively.'''
+    '''Class to call base_transform function on every image iteratively.'''
     def __init__(self, size, mean):
         self.size = size
         self.mean = np.array(mean, dtype=np.float32)
