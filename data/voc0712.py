@@ -118,14 +118,6 @@ class VOCDetection(data.Dataset):
         # return torch.from_numpy(img), target, height, width
 
     def pull_image(self, index):
-        '''Returns the original image object at index in PIL form
-        Note: not using self.__getitem__(), as any transformations passed in
-        could mess up this functionality.
-        Argument:
-            index (int): index of img to show
-        Return:
-            PIL img
-        '''
         '''Returns image in PIL form given index of image. __getitem__ cannot be used since transformations may change organization of data.'''
         img_id = self.ids[index]
         return cv2.imread(self._imgpath % img_id, cv2.IMREAD_COLOR)
