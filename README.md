@@ -3,6 +3,8 @@
 # Demo
 [![Video stream that was used as input for detection](https://imgur.com/1hcwxrk.gif) ](https://www.youtube.com/watch?v=u68EWmtKZw0) 
 
+[![Video stream that was used as input for detection](https://imgur.com/1hcwxrk.gif) ](https://imgur.com/GJDkbfu.gif) 
+
 [![Watch the video](https://i.imgur.com/1TP6yRMh.gif)](https://imgur.com/GJDkbfu.gif)
 
 [![Watch the video](https://imgur.com/vrdP6Qa.gif)](https://imgur.com/9hJaIPe.gif)
