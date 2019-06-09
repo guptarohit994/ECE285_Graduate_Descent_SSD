@@ -1,4 +1,3 @@
-
 from .config import HOME
 import os.path as osp
 import sys
@@ -27,31 +26,16 @@ VOC_ROOT = "/Users/raghavsubramanian/Documents/Spring_2018/ECE_285/ssd.pytorch/d
 
 
 class VOCAnnotationTransform(object):
-    """Transforms a VOC annotation into a Tensor of bbox coords and label index
-    Initilized with a dictionary lookup of classnames to indexes
-
-    Arguments:
-        class_to_ind (dict, optional): dictionary lookup of classnames -> indexes
-            (default: alphabetic indexing of VOC's 20 classes)
-        keep_difficult (bool, optional): keep difficult instances or not
-            (default: False)
-        height (int): height
-        width (int): width
-    """
-
+    '''Initializes an instance with a dictionary of classname:index mappings.
+    The default dictionary used is an alphabetic indexing of VOS's 20 classes.
+    The difficult instances can/cannot be kept by setting the keep_difficult parameter.'''
     def __init__(self, class_to_ind=None, keep_difficult=False):
         self.class_to_ind = class_to_ind or dict(
             zip(VOC_CLASSES, range(len(VOC_CLASSES))))
         self.keep_difficult = keep_difficult
 
     def __call__(self, target, width, height):
-        """
-        Arguments:
-            target (annotation) : the target annotation to be made usable
-                will be an ET.Element
-        Returns:
-            a list containing lists of bounding boxes  [bbox coords, class name]
-        """
+        '''Return list of list of bounding boxes characterized by coordinates and class names, given the target annotation, height and width.'''
         res = []
         for obj in target.iter('object'):
             difficult = int(obj.find('difficult').text) == 1
@@ -77,9 +61,7 @@ class VOCAnnotationTransform(object):
 
 class VOCDetection(data.Dataset):
     """VOC Detection Dataset Object
-
     input is image, target is annotation
-
     Arguments:
         root (string): filepath to VOCdevkit folder.
         image_set (string): imageset to use (eg. 'train', 'val', 'test')
@@ -143,10 +125,8 @@ class VOCDetection(data.Dataset):
 
     def pull_image(self, index):
         '''Returns the original image object at index in PIL form
-
         Note: not using self.__getitem__(), as any transformations passed in
         could mess up this functionality.
-
         Argument:
             index (int): index of img to show
         Return:
@@ -157,10 +137,8 @@ class VOCDetection(data.Dataset):
 
     def pull_noisy_image(self, index):
         '''Returns the original image object at index in PIL form
-
         Note: not using self.__getitem__(), as any transformations passed in
         could mess up this functionality.
-
         Argument:
             index (int): index of img to show
         Return:
@@ -189,31 +167,12 @@ class VOCDetection(data.Dataset):
         return noisy, clean
         
     def pull_anno(self, index):
-        '''Returns the original annotation of image at index
-
-        Note: not using self.__getitem__(), as any transformations passed in
-        could mess up this functionality.
-
-        Argument:
-            index (int): index of img to get annotation of
-        Return:
-            list:  [img_id, [(label, bbox coords),...]]
-                eg: ('001718', [('dog', (96, 13, 438, 332))])
-        '''
+        '''Return list of attributes of original annotation of image at index - [img_id, [(label, bbox coords, ...] given index of image to get annotation of.'''
         img_id = self.ids[index]
         anno = ET.parse(self._annopath % img_id).getroot()
         gt = self.target_transform(anno, 1, 1)
         return img_id[1], gt
 
     def pull_tensor(self, index):
-        '''Returns the original image at an index in tensor form
-
-        Note: not using self.__getitem__(), as any transformations passed in
-        could mess up this functionality.
-
-        Argument:
-            index (int): index of img to show
-        Return:
-            tensorized version of img, squeezed
-        '''
+        '''Returns tensorized and squeezed version of image given index of image.'''
         return torch.Tensor(self.pull_image(index)).unsqueeze_(0)
