@@ -6,9 +6,7 @@ import torch
 
 
 class PriorBox(object):
-    """Compute priorbox coordinates in center-offset form for each source
-    feature map.
-    """
+    '''Class to itemize priorbox coordinates in center-offset form tied to each source feature map.'''
     def __init__(self, cfg):
         super(PriorBox, self).__init__()
         self.image_size = cfg['min_dim']
@@ -27,7 +25,9 @@ class PriorBox(object):
                 raise ValueError('Variances must be greater than 0')
 
     def forward(self):
+        '''Forward propagation through priorbox layers of network.'''
         mean = []
+        #Update list of mean, tensor of which is returned from function
         for k, f in enumerate(self.feature_maps):
             for i, j in product(range(f), repeat=2):
                 f_k = self.image_size / self.steps[k]
@@ -38,18 +38,20 @@ class PriorBox(object):
                 # aspect_ratio: 1
                 # rel size: min_size
                 s_k = self.min_sizes[k]/self.image_size
+                #Append current bbox coords and size to mean list
                 mean += [cx, cy, s_k, s_k]
 
                 # aspect_ratio: 1
                 # rel size: sqrt(s_k * s_(k+1))
                 s_k_prime = sqrt(s_k * (self.max_sizes[k]/self.image_size))
+                #Append current bbox coords and normalized size to mean list
                 mean += [cx, cy, s_k_prime, s_k_prime]
 
-                # rest of aspect ratios
+                #Append all variations of aspect ratios of current bbox to mean list
                 for ar in self.aspect_ratios[k]:
                     mean += [cx, cy, s_k*sqrt(ar), s_k/sqrt(ar)]
                     mean += [cx, cy, s_k/sqrt(ar), s_k*sqrt(ar)]
-        # back to torch land
+        #Bring mean list back to torch
         output = torch.Tensor(mean).view(-1, 4)
         if self.clip:
             output.clamp_(max=1, min=0)
