@@ -21,9 +21,8 @@ A PyTorch implementation of the SSD Multibox Detector for image feature extracti
 - Training
 - Evaluation
 - Performance
-- Demo notebook1hcwxrk.gif
-- References
 - Directory structure
+- References
 ### Installation
 ```pip install -r requirements.txt```
 ### Datasets
@@ -37,11 +36,6 @@ Do ```python eval.py``` with parameters listed in the file as a flag or pass you
 On UCSD Data Science and Machine Learning Cluster - [more info](https://datahub.ucsd.edu/hub/login):
 - Training:
 - Evaluation:
-### Demo notebook
-Visualization notebooks in the root directory with plots of descent of loss function and other evaluation metrics, and sample images with detected categories shown with overlaid bounding boxes.
-### References <br>
-Apart from links above for SSD Arxiv paper and VOC dataset documentation, we referred to:
-- [Project problem statement document](https://www.charles-deledalle.fr/pages/files/ucsd_ece285_mlip/projectC_object_detection.pdf)
 ### Directory structure
 - pycache/ - .pyc files for Python interpreter to compile the source to
 - data/ - 
@@ -55,14 +49,13 @@ Apart from links above for SSD Arxiv paper and VOC dataset documentation, we ref
     - class VOCAnnotationTransform - store dictionaries of classname:index mappings, with an option to discard difficult instances
     - class VOCDetection - update and store annotation based on input image, with functions to get item, pull item, image, annotation and tensor
 - demos/ - demo gifs to show performance of SSD on noisy, clean and denoised video streams (source files for the .gifs shown above)
-- denoising_experiments/ -
+- \*_experiments/ - experiments folders for denoising, optimization and video performance evaluation
   - .ipynb_checkpoints/ - checkpoints folder for modular running of python notebooks
+  - \*.ipynb - jupyter notebooks to visualize descent of loss, other evaluation metrics
+  - \*.jpeg - plots of loss functions in different scenarios
+  - pickles/ - pickle files for easy storing of data during cross validation (different learning rates, momentums etc.)
   - pycache/ - .pyc files for Python interpreter to compile the source to
   - NOISE_PARAMS.pkl - Pickle file for noise parameters
-  - SSD_Denoise_Eval.ipynb - notebook for evaluating performance on denoised stream
-  - SSD_Denoise_Experiments.ipynb - notebook for evaluating performance on denoised stream
-  - SSD_Denoising.ipynb - notebook to visualize denoising algorithm
-  - SSD_Noisy_Eval.ipynb - notebook for evaluating performance on noisy stream
   - nntools.py - class script for base classes to implement neural nets, evaluate performance, specify metrics etc.
 - devkit_path / -
   - annotations_cache/ - 
@@ -106,4 +99,37 @@ Apart from links above for SSD Arxiv paper and VOC dataset documentation, we ref
     - function decode - decode locations from priors and locations and return bbox predictions
     - function log_sum_exp - compute log of sum of exponent of difference between current tensor and maximum value of tensor, for unaveraged confidence loss
     - function nms - compute non-maximum suppression to avoid too many overlapping bboxes that highlight nearly the same area
-  - optimization_experiments/ - 
+- out/ - output pickle files organized by the 20 VOC classes
+- train_eval_test_notebooks/ - training and evaluation notebooks for loss fn visualization
+- utils/ -
+  - pycache/ - .pyc files for Python interpreter to compile the source to
+  - init.py - import all in pwd
+  - augmentations.py - contains instances:
+    - function intersect - return intersection of two given bounding boxes
+    - function jaccard_numpy - return IoU or jaccard overlap of two given bounding boxes
+    - class Compose - definitions of different transforms to perform
+    - class Lambda - applies a lambda as a transform
+    - class ConvertFromInts - convert object from integers
+    - class SubtractMeans - subtract mean of image from passed image for normalization
+    - class ToAbsoluteCoords - convert lengths (widths, heights) to absolute coordinates
+    - class ToPercentCoords - convert coordinates to percentage values of image height and width
+    - class Resize - resize image
+    - class RandomSaturation - randomly saturate an image
+    - class RandomHue - add a random hue to an image
+    - class RandomLightingNoise - add random lighting noise to an image
+    - class ConvertColor - convert colorspace from BGR to HSV or vice versa
+    - class RandomContrast - add random contrast to an image
+    - class RandomBrightness - add random brightness to an image
+    - class ToCV2Image - shift image to CPU
+    - class ToTensor - shift image to GPU
+    - class RandomSampleCrop - randomly crop an image and return cropped image, adjusted bounding boxes and new class labels
+    - class Expand - expand an image through zero padding and mean-filling, and return along with adjusted bounding boxes and new class labels
+    - class RandomMirror - randomly choose to mirror an image
+    - class SwapChannels - Transform image by swapping channels in the specified order
+    - class PhotometricDistort - apply random brightness and lighting noise, and randomly distort images
+    - class SSDAugmentation - itemize all the above transformation functions on every image iteratively
+- weights/ - \*.pth files containing pretrained weights of SSD for the VOC 2012 dataset
+- requirements.txt - package and module requirements for running the project
+### References <br>
+Apart from links above for SSD Arxiv paper and VOC dataset documentation, we referred to:
+- [Project problem statement document](https://www.charles-deledalle.fr/pages/files/ucsd_ece285_mlip/projectC_object_detection.pdf)
