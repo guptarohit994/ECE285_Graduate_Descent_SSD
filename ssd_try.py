@@ -70,13 +70,13 @@ class SSD(nn.Module):
         loc = list()
         conf = list()
 
-        for k in len(self.vgg):
+        for k in range(len(self.vgg)):
             x= self.vgg[k](x)
             if k==22:
                 s = self.L2Norm(x)
                 sources.append(s)
           
-        source.append(x)
+        sources.append(x)
         
         # apply extra layers and cache source layer outputs
         for k, v in enumerate(self.extras):
@@ -163,7 +163,7 @@ def multibox(vgg, extra_layers, cfg, num_classes):
     loc_layers = []
     conf_layers = []
     vgg_source = [num_classes, -2]
-    network = [vgg_source, extra_layers[1::2]]]
+    network = [vgg_source, extra_layers[1::2]]
     for net in network:
         for k, v in enumerate(net):
             try:
