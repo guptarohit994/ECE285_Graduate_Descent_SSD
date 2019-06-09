@@ -5,11 +5,9 @@ from data import voc as cfg
 
 
 class Detect(Function):
-    """At test time, Detect is the final layer of SSD.  Decode location preds,
-    apply non-maximum suppression to location predictions based on conf
-    scores and threshold to a top_k number of output predictions for both
-    confidence score and locations.
-    """
+    '''Class to enable decoding of location predictions of bounding boxes and
+    apply NMS based on confidence data and threshold, and restrict to few of the
+    top output predictions only to reduce noisiness in evaluation.'''
     def __init__(self, num_classes, bkg_label, top_k, conf_thresh, nms_thresh):
         self.num_classes = num_classes
         self.background_label = bkg_label
@@ -22,15 +20,9 @@ class Detect(Function):
         self.variance = cfg['variance']
 
     def forward(self, loc_data, conf_data, prior_data):
-        """
-        Args:
-            loc_data: (tensor) Loc preds from loc layers
-                Shape: [batch,num_priors*4]
-            conf_data: (tensor) Shape: Conf preds from conf layers
-                Shape: [batch*num_priors,num_classes]
-            prior_data: (tensor) Prior boxes and variances from priorbox layers
-                Shape: [1,num_priors,4]
-        """
+        '''Forward propagation: one forward pass through the network.
+        Takes as input location prediction data, confidence data and prior data
+        from their respective layers, along with their shapes.'''
         num = loc_data.size(0)  # batch size
         num_priors = prior_data.size(0)
         output = torch.zeros(num, self.num_classes, self.top_k, 5)
