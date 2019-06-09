@@ -4,7 +4,7 @@
 Video stream that was used as input for detection - https://www.youtube.com/watch?v=u68EWmtKZw0 
 
 
-[<a href="https://imgur.com/1hcwxrk"><img src="https://imgur.com/1hcwxrk.gif" title="source: imgur.com"  width="80" height="80" /></a>](https://imgur.com/9hJaIPe.gif)
+[![Watch the video]<a href="https://imgur.com/1hcwxrk"><img src="https://imgur.com/1hcwxrk.gif" title="source: imgur.com"  width="80" height="80" /></a>](https://imgur.com/9hJaIPe.gif)
 
 
 [![Watch the video](https://i.imgur.com/1TP6yRMh.gif)](https://imgur.com/GJDkbfu.gif)
