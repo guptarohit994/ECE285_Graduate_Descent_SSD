@@ -1,17 +1,24 @@
 # ECE 285 UCSD - Spring '19 - Final project - Team Graduate Descent
 
 # Demo
-![Alt Text](https://imgur.com/t49lVZA)
+[![Video stream that was used as input for detection](https://imgur.com/1hcwxrk.gif) ](https://www.youtube.com/watch?v=u68EWmtKZw0) 
+
+[![Video stream that was used as input for detection](https://imgur.com/5BLCHJh.gif) ](https://imgur.com/GJDkbfu.gif) 
+
+[![Watch the video](https://i.imgur.com/1TP6yRMh.gif)](https://imgur.com/GJDkbfu.gif)
+
+[![Watch the video](https://imgur.com/vrdP6Qa.gif)](https://imgur.com/9hJaIPe.gif)
+
 
 # Single Shot Detector 
-A PyTorch implementation of the SSD Multibox Detector for image feature extraction, based on the 2016 [Arxiv](http://arxiv.org/abs/1512.02325) paper by Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang, and Alexander C. Berg.
+A PyTorch implementation of the SSD Multibox Detector for image feature extraction, based on the 2016 [Arxiv](http://arxiv.org/abs/1512.02325) paper by Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang, and Alexander C. Berg.1TP6yRMh.gif
 ## Table of contents
 - Installation
 - Datasets
 - Training
 - Evaluation
 - Performance
-- Demo notebook
+- Demo notebook1hcwxrk.gif
 - References
 - Directory structure
 ### Installation
