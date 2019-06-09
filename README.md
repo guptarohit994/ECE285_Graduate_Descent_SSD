@@ -2,7 +2,7 @@
 
 # Demo
 
-<img src="https://imgur.com/Z31QH2I" width="40" height="40" />
+src="https://imgur.com/Z31QH2I"
 
 
 # Single Shot Detector 
