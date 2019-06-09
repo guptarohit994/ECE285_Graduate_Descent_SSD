@@ -1,7 +1,7 @@
 # ECE 285 UCSD - Spring '19 - Final project - Team Graduate Descent
 
 # Demo
-[![Video stream that was used as input for detection](https://imgur.com/1hcwxrk) ](https://www.youtube.com/watch?v=u68EWmtKZw0) 
+[![Video stream that was used as input for detection](https://imgur.com/1hcwxrk.gif) ](https://www.youtube.com/watch?v=u68EWmtKZw0) 
 
 
 [![Watch the video]<a href="https://imgur.com/1hcwxrk"><img src="https://imgur.com/1hcwxrk.gif" title="source: imgur.com"  width="80" height="80" /></a>](https://imgur.com/9hJaIPe.gif)
