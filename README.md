@@ -26,14 +26,17 @@ A PyTorch implementation of the SSD Multibox Detector for image feature extracti
 ### Installation
 To install Python dependencies and modules, use <br>
 ```pip install -r requirements.txt``` <br>
-You can either choose to train the net yourself (preferrably with a CUDA GPU), or download pretrained weights files (\*.pth) from the weights/ folder.
+
+To get the pretrained weights ready for use, run `tar -zxvf ssd_pretrained.pth.tar.gz` and `tar -zxvf vgg16_reducedfc.pth.tar.gz` inside the `weights/` folder.
 ### Datasets
 [2012 version](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/) of Pascal VOC dataset - well known dataset for object detection/classification/segmentation. Contains 100k images for training and validation containing bounding boxes with 20 categories of objects.
+### Demo
+Run "SSD_demo.ipynb" notebook to run Single-Shot Detection on a random image from the PascalVOC2012 dataset.
 ### Training
-Do ```python train.py``` with parameters listed in the file as a flag or pass your own parameters.
-#### NOTE: NVIDIA/CUDA enabled GPU is recommended for speed.
+Run "SSD_train.ipynb" notebook to train the SSD model on the PascalVOC2012 dataset.
 ### Evaluation
-Do ```python eval.py``` with parameters listed in the file as a flag or pass your own parameters.
+Run "SSD_Eval.ipynb" notebook to evaluate the SSD model on the PascalVOC2012 validation set.
+Run "SSD_Eval_Testset.ipynb" notebook to evaluate the SSD model on the PascalVOC2007 test set. (Download the PascalVOC2007 test set using `wget http://pjreddie.com/media/files/VOCtest_06-Nov-2007.tar` and run `tar -xvf VOCtest_06-Nov-2007.tar` in the root directory of the repository.
 ### Performance <br>
 On [UCSD Data Science and Machine Learning Cluster](https://datahub.ucsd.edu/hub/home):
 
@@ -143,3 +146,8 @@ Apart from links above for SSD Arxiv paper and VOC dataset documentation, we ref
 ## A project by - 
 
 ![](./Real_Time_Graduate_Descent.png)
+
+- Raghav Subramanian
+- Karthikeyan Sugumaran
+- Rohit Gupta
+- Imtiaz Ameerudeen
