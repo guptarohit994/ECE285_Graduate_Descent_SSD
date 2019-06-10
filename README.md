@@ -31,11 +31,12 @@ To get the pretrained weights ready for use, run `tar -zxvf ssd_pretrained.pth.t
 ### Datasets
 [2012 version](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/) of Pascal VOC dataset - well known dataset for object detection/classification/segmentation. Contains 100k images for training and validation containing bounding boxes with 20 categories of objects.
 ### Demo
-Run "SSD_demo.ipynb" notebook to run Single-Shot Detection on a random image from the PascalVOC2012 dataset.
+Run "SSD_Demo.ipynb" notebook to run Single-Shot Detection on a random image from the PascalVOC2012 dataset.
 ### Training
 Run "SSD_train.ipynb" notebook to train the SSD model on the PascalVOC2012 dataset.
 ### Evaluation
 Run "SSD_Eval.ipynb" notebook to evaluate the SSD model on the PascalVOC2012 validation set.
+
 Run "SSD_Eval_Testset.ipynb" notebook to evaluate the SSD model on the PascalVOC2007 test set. (Download the PascalVOC2007 test set using `wget http://pjreddie.com/media/files/VOCtest_06-Nov-2007.tar` and run `tar -xvf VOCtest_06-Nov-2007.tar` in the root directory of the repository.
 ### Performance <br>
 On [UCSD Data Science and Machine Learning Cluster](https://datahub.ucsd.edu/hub/home):
@@ -45,6 +46,24 @@ On [UCSD Data Science and Machine Learning Cluster](https://datahub.ucsd.edu/hub
 | Training  |  88.19% | 52.73% | 73.78% | 
 | Evaluation  | 77.43% | 46.47% | 61.84% |
 
+### Experiments
+- Training & Optimization Experiments (Plots for all these experiments can be found inside `optimization_experiments/` folder)
+  - "SSD_train.ipynb" - Runs the training using SGD Optimizer.
+  - "SSD_train_Adam.ipynb" - Runs the training using Adam Optimizer.
+  - "SSD_train_RMSProp.ipynb" - Runs the training using RMSProp Optimizer.
+  - "SSD_train_LearningRate.ipynb" - Runs the training using a range of *learning rates*. Used for hyperparameter tuning.
+  - "SSD_train_Momentum.ipynb" - Runs the training using a range of *momentum* values. Used for hyperparameter tuning.
+- Denoising Experiments (Uses DUDnCNN trained net for denoising - denNet.pt)
+  - "SSD_Denoising.ipynb" - Runs detection on Clean, Noisy, and Denoised versions of a random image from the PascalVOC2012 dataset.
+  - "SSD_Denoise_Eval.ipynb" - Runs the evaluation of the the denoised images of the validation set of PascalVOC2012.
+  - "SSD_Denoise_Eval_Testset.ipynb" - Runs the evaluation of the denoised images of the test set of PascalVOC2007.
+  - "SSD_Noisy_Eval.ipynb" - Runs the evaluation of the the noisy images of the validation set of PascalVOC2012.
+  - "SSD_Noisy_Eval_Testset.ipynb" - Runs the evaluation of the noisy images of the test set of PascalVOC2007.
+  - "SSD_Denoise_Experiments.ipynb" - A superset of "SSD_Denoising.ipynb" that runs detection of Clean, Noisy, and Denoised versions of a random image from PascalVOC2012 dataset, while providing options for changing the characteristics of the noise added. The characteristics include Mean, Standard Deviation, and Magnitude.
+- Video Experiments (inside `video_experiments`)
+  - "SSD_VIDEO.ipynb" - Uses the pretrained SSD model on locally saved frames of a video stream. Detects Clean images.
+  - "SSD_VIDEO_NOISY.ipynb" - Uses the pretrained SSD model on locally saved frames of a video stream. Detects Noisy images.
+  - "SSD_VIDEO_DENOISED.ipynb" - Uses the pretrained SSD model on locally saved frames of a video stream. Detects Denoised images.
 ### Directory structure
 - pycache/ - .pyc files for Python interpreter to compile the source to
 - data/ - 
