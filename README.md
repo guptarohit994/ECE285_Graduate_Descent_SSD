@@ -2,7 +2,7 @@
 # Graduate Descent - Box Architecture Nets(BANs) 
 
 ## In this project we have implemented Single-Shot Detector(SSD) for multi-object detection.
-# New York City Walking Tour Videostream (Input
+# New York City Walking Tour Videostream (Input)
 [![Video stream that was used as input for detection](https://imgur.com/1hcwxrk.gif) ](https://www.youtube.com/watch?v=u68EWmtKZw0) 
 
 # Clean Videostream after Detection
@@ -18,15 +18,15 @@
 # Single Shot Detector 
 A PyTorch implementation of the SSD Multibox Detector for image feature extraction, based on the 2016 [Arxiv](http://arxiv.org/abs/1512.02325) paper by Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang, and Alexander C.
 ## Table of contents
-- Installation
-- Datasets
-- Demo
-- Training
-- Evaluation
-- Performance
-- Experiments
-- Directory structure
-- References
+* [Installation](#Installation)
+* [Datasets](#Datasets)
+* [Demo](#Demo)
+* [Training](#Training)
+* [Evaluation](#Evaluation)
+* [Performance](#Performance)
+* [Experiments](#Experiments)
+* [Directory structure](#Directory-structure)
+* [References](#References)
 ### Installation
 To install Python dependencies and modules, use <br>
 ```pip install -r requirements.txt``` <br>
