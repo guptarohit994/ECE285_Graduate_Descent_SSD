@@ -14,7 +14,7 @@
 
 
 # Single Shot Detector 
-A PyTorch implementation of the SSD Multibox Detector for image feature extraction, based on the 2016 [Arxiv](http://arxiv.org/abs/1512.02325) paper by Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang, and Alexander C. Berg.1TP6yRMh.gif
+A PyTorch implementation of the SSD Multibox Detector for image feature extraction, based on the 2016 [Arxiv](http://arxiv.org/abs/1512.02325) paper by Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang, and Alexander C.
 ## Table of contents
 - Installation
 - Datasets
@@ -33,9 +33,13 @@ Do ```python train.py``` with parameters listed in the file as a flag or pass yo
 ### Evaluation
 Do ```python eval.py``` with parameters listed in the file as a flag or pass your own parameters.
 ### Performance <br>
-On UCSD Data Science and Machine Learning Cluster - [more info](https://datahub.ucsd.edu/hub/login):
-- Training:
-- Evaluation:
+On [UCSD Data Science and Machine Learning Cluster](https://datahub.ucsd.edu/hub/home):
+
+| Category  | Clean Image (mAP) | Noisy Image (mAP) | Denoised Image (mAP) |
+| ------------- | ------------- | ------------- | ------------- |
+| Training  |  88.19% | 52.73% | 73.78% | 
+| Evaluation  | 77.43% | 46.47% | 61.84% |
+
 ### Directory structure
 - pycache/ - .pyc files for Python interpreter to compile the source to
 - data/ - 
