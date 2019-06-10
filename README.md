@@ -1,4 +1,4 @@
-# ECE 285 UCSD - Spring '19 - Final project - Team Graduate Descent
+# ECE 285 UCSD - Spring '19 - Final project - Team Graduate Descent 
 
 # Input New York City Walking Tour Videostream
 [![Video stream that was used as input for detection](https://imgur.com/1hcwxrk.gif) ](https://www.youtube.com/watch?v=u68EWmtKZw0) 
@@ -133,3 +133,7 @@ On UCSD Data Science and Machine Learning Cluster - [more info](https://datahub.
 ### References <br>
 Apart from links above for SSD Arxiv paper and VOC dataset documentation, we referred to:
 - [Project problem statement document](https://www.charles-deledalle.fr/pages/files/ucsd_ece285_mlip/projectC_object_detection.pdf)
+
+## A project by - 
+
+![](./Real_Time_Graduate_Descent.png)
