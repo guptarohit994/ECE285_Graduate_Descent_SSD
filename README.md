@@ -161,10 +161,12 @@ On [UCSD Data Science and Machine Learning Cluster](https://datahub.ucsd.edu/hub
     - class SSDAugmentation - itemize all the above transformation functions on every image iteratively
 - weights/ - \*.pth files containing pretrained weights of SSD for the VOC 2012 dataset
 - requirements.txt - package and module requirements for running the project
+- opts.py - Contains default variables, parameters, and paths to run experiments.
+- denNet.pt - Trained DUDnCNN net for image denoising.
 ### References <br>
 Apart from links above for SSD Arxiv paper and VOC dataset documentation, we referred to:
 - [Project problem statement document](https://www.charles-deledalle.fr/pages/files/ucsd_ece285_mlip/projectC_object_detection.pdf)
-
+- Inspired by https://github.com/amdegroot/ssd.pytorch for SSD Implementation
 ## A project by - 
 
 ![](./Real_Time_Graduate_Descent.png)
