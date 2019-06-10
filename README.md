@@ -24,7 +24,9 @@ A PyTorch implementation of the SSD Multibox Detector for image feature extracti
 - Directory structure
 - References
 ### Installation
-```pip install -r requirements.txt```
+To install Python dependencies and modules, use <br>
+```pip install -r requirements.txt``` <br>
+You can either choose to train the net yourself (preferrably with a CUDA GPU), or download pretrained weights files (\*.pth) from the weights/ folder.
 ### Datasets
 [2012 version](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/) of Pascal VOC dataset - well known dataset for object detection/classification/segmentation. Contains 100k images for training and validation containing bounding boxes with 20 categories of objects.
 ### Training
