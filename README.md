@@ -1,7 +1,8 @@
 # ECE 285 UCSD - Spring '19 - Final project
 # Graduate Descent - Box Architecture Nets(BANs) 
 
-# New York City Walking Tour Videostream (Input)
+## In this project we have implemented Single-Shot Detector(SSD) for multi-object detection.
+# New York City Walking Tour Videostream (Input
 [![Video stream that was used as input for detection](https://imgur.com/1hcwxrk.gif) ](https://www.youtube.com/watch?v=u68EWmtKZw0) 
 
 # Clean Videostream after Detection
