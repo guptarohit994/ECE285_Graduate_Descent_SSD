@@ -1,16 +1,16 @@
 # ECE 285 UCSD - Spring '19 - Final project
 # Graduate Descent - Box Architecture Nets(BANs) 
 
-# Input New York City Walking Tour Videostream
+# New York City Walking Tour Videostream (Input)
 [![Video stream that was used as input for detection](https://imgur.com/1hcwxrk.gif) ](https://www.youtube.com/watch?v=u68EWmtKZw0) 
 
-# Clean Videostream object detected
+# Clean Videostream after Detection
 ![](demos/CLEAN_FINAL.gif)
 
-# Noisy Videostream object detected
+# Noisy Videostream after Detection
 ![](demos/NOISY_FINAL.gif)
 
-# Denoised Videostream object detected
+# Denoised Videostream after Detection
 ![](demos/DENOISED_FINAL.gif)
 
 
@@ -19,9 +19,11 @@ A PyTorch implementation of the SSD Multibox Detector for image feature extracti
 ## Table of contents
 - Installation
 - Datasets
+- Demo
 - Training
 - Evaluation
 - Performance
+- Experiments
 - Directory structure
 - References
 ### Installation
@@ -48,7 +50,7 @@ On [UCSD Data Science and Machine Learning Cluster](https://datahub.ucsd.edu/hub
 | Evaluation  | 77.43% | 46.47% | 61.84% |
 
 ### Experiments
-- T**raining & Optimization Experiments** (Plots for all these experiments can be found inside `optimization_experiments/` folder)
+- **Training & Optimization Experiments** (Plots for all these experiments can be found inside `optimization_experiments/` folder)
   - **SSD_train.ipynb** - Runs the training using SGD Optimizer.
   - **SSD_train_Adam.ipynb** - Runs the training using Adam Optimizer.
   - **SSD_train_RMSProp.ipynb** - Runs the training using RMSProp Optimizer.
