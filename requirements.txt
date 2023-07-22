@@ -9,7 +9,7 @@ pandas==0.24.0
 pickleshare==0.7.5
 Pillow==5.4.1
 pycosat==0.6.3
-torch==1.0.0
+torch==1.13.1
 torchfile==0.1.0
 torchvision==0.2.1
 tqdm==4.29.1
